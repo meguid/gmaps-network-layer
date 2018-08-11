@@ -39,16 +39,16 @@ extension GoogleMapsNetwork: TargetType {
         case .getDirections(let origin, let destination, let waypoints,
                             let mode, let alternatives, let avoid, let units, let trafficModel):
 
-            let parameters : [String : Any?] = [
+            let parameters: [String : Any] = [
                 "key": GMapsAPIKey,
                 "origin": origin.value,
                 "destination": destination.value,
-                "waypoints": waypoints?.value,
-                "mode": mode?.rawValue,
-                "alternatives": alternatives,
-                "avoid": avoid?.rawValue,
-                "units": units?.rawValue,
-                "traffic_model" : trafficModel]
+                "waypoints": waypoints?.value ?? "",
+                "mode": mode?.rawValue ?? "driving",
+                "alternatives": alternatives ?? false,
+                "avoid": avoid?.rawValue ?? "",
+                "units": units?.rawValue ?? "",
+                "traffic_model" : trafficModel ?? ""]
             
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }

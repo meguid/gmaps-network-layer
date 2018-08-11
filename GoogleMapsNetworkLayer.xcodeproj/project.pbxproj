@@ -20,6 +20,7 @@
 		BFD25B81211F2606004EC68D /* RouteRestriction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD25B80211F2606004EC68D /* RouteRestriction.swift */; };
 		BFD25B83211F261A004EC68D /* UnitSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD25B82211F261A004EC68D /* UnitSystem.swift */; };
 		BFD25B85211F262A004EC68D /* TrafficModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD25B84211F262A004EC68D /* TrafficModel.swift */; };
+		BFD25B87211F2851004EC68D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD25B86211F2851004EC68D /* Directions.swift */; };
 		BFDDA6AE211F134A0071267B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDA6AD211F134A0071267B /* AppDelegate.swift */; };
 		BFDDA6B0211F134A0071267B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDA6AF211F134A0071267B /* ViewController.swift */; };
 		BFDDA6B3211F134A0071267B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFDDA6B1211F134A0071267B /* Main.storyboard */; };
@@ -66,6 +67,7 @@
 		BFD25B80211F2606004EC68D /* RouteRestriction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteRestriction.swift; sourceTree = "<group>"; };
 		BFD25B82211F261A004EC68D /* UnitSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitSystem.swift; sourceTree = "<group>"; };
 		BFD25B84211F262A004EC68D /* TrafficModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficModel.swift; sourceTree = "<group>"; };
+		BFD25B86211F2851004EC68D /* Directions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
 		BFDDA6AA211F134A0071267B /* GoogleMapsNetworkLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMapsNetworkLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFDDA6AD211F134A0071267B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFDDA6AF211F134A0071267B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,9 +118,9 @@
 		BFD25B74211F24BB004EC68D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BFD25B79211F25B0004EC68D /* Requests */,
 				BFD25B77211F258E004EC68D /* Location.swift */,
 				BFD25B70211F21AD004EC68D /* GoogleAPIsError.swift */,
+				BFD25B86211F2851004EC68D /* Directions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,8 +128,8 @@
 		BFD25B76211F24DE004EC68D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				BFDDA6E0211F15890071267B /* Constants.swift */,
 				BFD25B72211F243D004EC68D /* Reachability.swift */,
+				BFDDA6E0211F15890071267B /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -170,9 +172,9 @@
 		BFDDA6AC211F134A0071267B /* GoogleMapsNetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				BFDDA6DB211F14E00071267B /* NetworkLayer */,
 				BFDDA6AD211F134A0071267B /* AppDelegate.swift */,
 				BFDDA6AF211F134A0071267B /* ViewController.swift */,
-				BFDDA6DB211F14E00071267B /* NetworkLayer */,
 				BFDDA6B1211F134A0071267B /* Main.storyboard */,
 				BFDDA6B4211F134A0071267B /* Assets.xcassets */,
 				BFDDA6B6211F134A0071267B /* LaunchScreen.storyboard */,
@@ -205,6 +207,7 @@
 				BFD25B6E211F1FFB004EC68D /* GoogleAPIManager.swift */,
 				BFDDA6DC211F14FE0071267B /* GoogleMapsNetwork.swift */,
 				BFD25B74211F24BB004EC68D /* Models */,
+				BFD25B79211F25B0004EC68D /* Requests */,
 				BFD25B76211F24DE004EC68D /* Helpers */,
 			);
 			path = NetworkLayer;
@@ -454,6 +457,7 @@
 				BFD25B83211F261A004EC68D /* UnitSystem.swift in Sources */,
 				BFDDA6E1211F15890071267B /* Constants.swift in Sources */,
 				BFD25B7F211F25F7004EC68D /* TravelMode.swift in Sources */,
+				BFD25B87211F2851004EC68D /* Directions.swift in Sources */,
 				BFD25B6F211F1FFB004EC68D /* GoogleAPIManager.swift in Sources */,
 				BFDDA6B0211F134A0071267B /* ViewController.swift in Sources */,
 				BFDDA6AE211F134A0071267B /* AppDelegate.swift in Sources */,

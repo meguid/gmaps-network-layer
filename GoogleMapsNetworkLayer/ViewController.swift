@@ -13,14 +13,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        GoogleAPIManager.callAPI(endpoint: .getDirections(origin: LocationRequest(latitude: 30.1, longitude: 30.1), destination: LocationRequest(latitude: 30.1, longitude: 30.11), waypoints: nil, mode: nil, alternatives: nil, avoid: nil, units: nil, trafficModel: nil), completionHandler: { (jsonData) in
+            
+            guard let directionsResponse = try? JSONDecoder().decode(Directions.self, from: jsonData) else {
+                print("FAIL")
+                return
+            }
+            
+            print(directionsResponse)
+            
+        }) { (error) in
+            print(error.status)
+        }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
