@@ -12,10 +12,10 @@ class WaypointsRequest {
     
     var value: String
     
-    init(waypoints: [Location]) {
+    init(waypoints: [LocationRequest]) {
         self.value = "optimize:true"
         for waypoint in waypoints {
-            self.value += "|\(waypoint.latitude),\(waypoint.longitude)"
+            self.value += "|\(waypoint.value)"
         }
     }
 }
