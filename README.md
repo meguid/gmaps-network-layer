@@ -207,5 +207,99 @@ A **`Google Maps`** APIs network layer using **`Moya`**
                                         .
     ```
   
-
    
+## The Implementation
+- Google API Manager
+  ```bash
+  Calls Moya provider and handles the result.
+  ```
+
+  ```swift  
+  class GoogleAPIManager {
+
+      static func callAPI(endpoint: GoogleMapsNetwork, completionHandler: @escaping (Data) -> Void, failHandler: @escaping (GoogleAPIsError) -> Void) {
+          MoyaProvider<GoogleMapsNetwork>().request(endpoint) { result in
+              switch result {
+              case let .success(response):
+                  if (200 ... 299).contains(response.statusCode) {
+                      completionHandler(response.data)
+                  } else {
+                      guard let error = try? JSONDecoder().decode(GoogleAPIsError.self, from: response.data) else {
+                          failHandler(GoogleAPIsError())
+                          return
+                      }
+                      failHandler(error)
+                  }
+              case .failure:
+                  if Network.checkConnection() {
+                      failHandler(GoogleAPIsError(errorMessage: "Connection Timed Out"))
+                  } else {
+                      failHandler(GoogleAPIsError(errorMessage: "There's no internet connection"))
+                  }
+              }
+          }
+      }
+  }
+  ```
+
+- Google Maps Network
+  ```bash
+  Configure the APIs parameters, body, methods and paths.
+  ```
+
+  ```swift  
+
+  enum GoogleMapsNetwork {
+      case getDirections(origin : LocationRequest, destination : LocationRequest, waypoints : WaypointsRequest?, mode: TravelMode?, alternatives: Bool?, avoid: RouteRestriction?, units: UnitSystem?, trafficModel: TrafficModel?)
+  }
+
+  extension GoogleMapsNetwork: TargetType {
+
+      var baseURL: URL {
+          return URL(string: "https://maps.googleapis.com/maps/api")!
+      }
+
+      var path: String {
+          switch self {
+          case .getDirections:
+              return "/directions/json"
+          }
+      }
+
+      var method: Moya.Method {
+          switch self {
+          case .getDirections:
+              return .get
+          }
+      }
+
+      var task: Task {
+
+          switch self {
+          case .getDirections(let origin, let destination, let waypoints,
+                              let mode, let alternatives, let avoid, let units, let trafficModel):
+
+              let parameters: [String : Any] = [
+                  "key": GMapsAPIKey,
+                  "origin": origin.value,
+                  "destination": destination.value,
+                  "waypoints": waypoints?.value ?? "",
+                  "mode": mode?.rawValue ?? "driving",
+                  "alternatives": alternatives ?? false,
+                  "avoid": avoid?.rawValue ?? "",
+                  "units": units?.rawValue ?? "",
+                  "traffic_model" : trafficModel ?? ""]
+
+              return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+          }
+      }
+
+      var headers: [String: String]? {
+          return [:]
+      }
+
+      var sampleData: Data {
+          return "".utf8Encoded
+      }
+  }
+  ```
